@@ -38,3 +38,11 @@ class Solution {
         return maxLen;
     }
 };
+
+int main(){
+    Solution s;
+    vector<int> arr = {1, -1, 5, -2, 3};
+    int k = 3;
+    cout << s.longestSubarray(arr, k) << endl; // Output: 4
+    return 0;
+}
