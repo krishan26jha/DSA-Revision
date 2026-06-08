@@ -44,9 +44,45 @@ int maxSubArray(vector<int> &nums)
     return ans;
 }
 
+void printSubarrayWithLargestSum(vector<int> &nums)
+{
+    int curr_sum = 0;
+    int ans = INT_MIN;
+    int start = 0, end = 0, temp_start = 0;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        curr_sum += nums[i];
+
+        if (curr_sum > ans)
+        {
+            ans = curr_sum;
+            start = temp_start;
+            end = i;
+        }
+
+        if (curr_sum < 0)
+        {
+            curr_sum = 0;
+            temp_start = i + 1;
+        }
+    }
+
+    cout << "Maximum subarray sum is: " << ans << endl;
+    cout << "Subarray with the largest sum is: [";
+    for (int i = start; i <= end; i++)
+    {
+        cout << nums[i];
+        if (i < end)
+            cout << ", ";
+    }
+    cout << "]" << endl;
+}
+
 int main(){
     vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
     cout << maxSubArray(nums) << endl; // Output: 6
+    printSubarrayWithLargestSum(nums);
     return 0;
 }
 

@@ -3,6 +3,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Aprroach 1: Two Pointer Approach
+// We can use two pointers to solve this problem. We can maintain two pointers, one for the current index and another for the last non-zero element. 
+// We can iterate through the array and whenever we encounter a non-zero element, we can swap it with the last non-zero element and update the last non-zero element pointer. This way, all the non-zero elements will be moved to the front of the array and all the zeroes will be moved to the end of the array.
+
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {

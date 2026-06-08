@@ -33,6 +33,17 @@ public:
             xor2 ^= i;
         }
         return xor1 ^ xor2;
+
+        // can we do this in one loop
+        /* we can also do this in one loop by taking xor of all the numbers in the array and xor of all the numbers from 0 to n in the same loop and then xor of both will give us the missing number */
+        int xor3 = 0;   
+        for(int i=0;i<=n;i++){
+            xor3 ^= i;
+            if(i < n){
+                xor3 ^= nums[i];
+            }
+        }
+        return xor3;
     }
 
     int missingNumber2(vector<int>& nums) {
@@ -49,7 +60,7 @@ public:
                 return i;
             }
         }
-        
+        return n; // This line should never be reached if the input is valid
     }
     
 

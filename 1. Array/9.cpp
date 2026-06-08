@@ -10,10 +10,13 @@ For example, the next permutation of arr = [1,2,3] is [1,3,2].
 Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
 While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.
 
+
+// Dictionary example:- aab, aac ,aba we find common prefix and then find the next character in the dictionary and then replace the remaining characters with the smallest possible characters.
+// aab -> aac (common prefix is aa and next character in the dictionary is c and then replace the remaining characters with the smallest possible characters which is a)
+
 Given an array of integers nums, find the next permutation of nums.
 
 The replacement must be in place and use only constant extra memory.
-
 Example 1:
 Input: nums = [1,2,3]
 Output: [1,3,2]
@@ -40,7 +43,7 @@ void nextPermutation(vector<int> &nums)
 {
 
     int bp = -1;
-    // finding the break point
+    // finding the break point : finding the common prefix from back
     for (int i = nums.size() - 2; i >= 0; i--)
     {
         if (nums[i] < nums[i + 1])
@@ -49,7 +52,7 @@ void nextPermutation(vector<int> &nums)
             break;
         }
     }
-    // first greater element from back
+    // first greater element from back : we are finding the next character in the dictionary which is greater than the break point element
     if (bp != -1)
     {
         for (int i = nums.size() - 1; i >= 0; i--)
@@ -61,7 +64,7 @@ void nextPermutation(vector<int> &nums)
             }
         }
     }
-    // reverse the array from bp+1 to end
+    // reverse the array from bp+1 to end : we are replacing the remaining characters with the smallest possible characters which is the reverse of the current order
     reverse(nums.begin() + bp + 1, nums.end());
 }
 

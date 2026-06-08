@@ -30,6 +30,10 @@ class Solution {
                 maxLen = max(maxLen,i-(mp[rem]));
             }
             
+            // {2,0,0,3} k = 3 
+            // subSum = 2, rem = -1, mp = {2:0}
+            // subSum = 2, rem = -1, mp = {2:0, 2:1} // we should not update the index of the subSum in the hash map if it is already present because we want to find the longest subarray.
+
             if(mp.find(subSum) == mp.end()){
                 mp[subSum] = i;
             }
@@ -38,6 +42,32 @@ class Solution {
         return maxLen;
     }
 };
+
+
+
+// second approach using sliding window technique
+int longestSubarray2(vector<int>& arr, int k) {
+    int n = arr.size();
+    int maxLen = 0;
+    int start =0,end = 0;
+    long long subSum = arr[0];
+
+    while(end < n){
+        while(start <= end && subSum > k){
+            subSum -= arr[start];
+            start++;
+        }
+        if(subSum == k){
+            maxLen = max(maxLen,end-start+1);
+        }
+        end++;
+        if(end < n){
+            subSum += arr[end];
+        }
+        
+    }
+    return maxLen;
+}
 
 int main(){
     Solution s;
